@@ -1,18 +1,39 @@
 #pragma once
 #include <vector>
 #include "Domain.h"
+#include "Vector.h"
 
 class moviesRepo
 {
 private:
-	
-public:
 	std::vector<Movie> moviesList;
-	std::vector<Movie> getList();
+	DynamicVector<Movie> moviesL;
+public:
+		
+	DynamicVector<Movie> getList();
 
-	void addMovie(Movie m);
-
+	/*
+	Takes as param a movie and adds it to the vector of Movies.
+	m - has to be of valid Movie type.
+	*/
+	void addMovie(const Movie& m);
+	/*
+	Initialises Repo vector with entries of movies for testing!
+	*/
 	void initRepo();
+	/*
+	Takes as parameters a string. Finds the movie in the vector with the specific
+	title and then, deletes it by overwriting the over entries in the vector with the ones
+	on the next posiitons.
+	*/
+	void deleteMovie(const std::string title);
 
-	void deleteMovie(Movie m);
+	/*
+	Takes as parameter a title of a movie in the VectorList, finds that movie and then
+	updates the movie with the string given by the user.
+	The update of the movie is made by calling te updateMovie method of the Movie class.
+	*/
+	void updateMovieRepo(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer);
 };
+
+//void testRepo();

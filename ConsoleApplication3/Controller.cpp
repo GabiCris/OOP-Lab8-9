@@ -1,29 +1,25 @@
 #include "Controller.h"
 
 
-void moviesCtrl::setRepo(moviesRepo r)
-{
-	this->repo = r;
-}
 
-moviesRepo moviesCtrl::getRepo()
-{
-	return this->repo;
-}
-
-std::vector<Movie> moviesCtrl::getMovies()
+DynamicVector<Movie> moviesCtrl::getMovies()
 {
 	return this->repo.getList();
 }
 
-void moviesCtrl::addMovieCtrl(Movie m)
+void moviesCtrl::addMovieCtrl(const Movie& m)
 {
-	std::cout << getRepo().moviesList.size();
-	this->getRepo().addMovie(m);
-	std::cout << getRepo().moviesList.size();
+	std::cout << getRepo().getList().getSize();
+	repo.addMovie(m);
+	std::cout << getRepo().getList().getSize();
 }
 
-void moviesCtrl::deleteMovieCtrl(Movie m)
+void moviesCtrl::deleteMovieCtrl(const std::string& title)
 {
-	this->getRepo().deleteMovie(m);
+	this->repo.deleteMovie(title);
+}
+
+void moviesCtrl::updateMovieCtrl(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer)
+{
+	repo.updateMovieRepo(title, newTitle, newGenre, newYear, newLikes, newTrailer);
 }
