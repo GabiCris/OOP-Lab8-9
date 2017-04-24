@@ -150,6 +150,7 @@
     <ClInclude Include="Domain.h" />
     <ClInclude Include="Repository.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />

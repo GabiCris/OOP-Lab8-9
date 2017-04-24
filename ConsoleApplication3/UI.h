@@ -6,9 +6,7 @@ class UI
 private:
 	moviesCtrl ctrl;
 public:
-	void setUI(moviesCtrl c);
-
-	moviesCtrl getCtrl();
+	UI (const moviesCtrl& c): ctrl(c) {}
 
 	void appStart();
 
@@ -16,6 +14,9 @@ public:
 
 	void listUi();
 
+	void deleteUi();
+
+	void updateUi();
 
 	std::string getCommand();
 };

@@ -12,14 +12,19 @@ private:
 	std::string trailer;
 
 public:
-	Movie(std::string title, std::string genre, int year, int likes, std::string trailer);
+	Movie();
+	Movie(const std::string& title, const std::string& genre, int year, int likes, const std::string& trailer);
 	void printMovie();
 
 	std::string getTitle();
 
+	bool operator < (Movie m);
+
 	std::string getGenre();
 
 	std::string getTrailer();
+
+	void updateMovie(const std::string& newTitle, const std::string& newGenre, const std::string& newYear, const std::string& newLikes, const std::string& newTrailer);
 
 	int getYear();
 
