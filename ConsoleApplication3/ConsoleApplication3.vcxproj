@@ -148,6 +148,8 @@
   <ItemGroup>
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Domain.h" />
+    <ClInclude Include="ListCtrl.h" />
+    <ClInclude Include="ListRepo.h" />
     <ClInclude Include="Repository.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Vector.h" />
@@ -155,6 +157,8 @@
   <ItemGroup>
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Domain.cpp" />
+    <ClCompile Include="ListCtrl.cpp" />
+    <ClCompile Include="ListRepo.cpp" />
     <ClCompile Include="Repository.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="UI.cpp" />

@@ -12,6 +12,8 @@ public:
 
 	DynamicVector<Movie> getMovies();
 
+	void incLikes(const std::string title) { this->repo.increaseLike(title); }
+
 	void addMovieCtrl(const Movie& m);
 
 	void deleteMovieCtrl(const std::string& title);

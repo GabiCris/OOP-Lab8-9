@@ -15,26 +15,46 @@ void moviesRepo::addMovie(const Movie& m)
 
 void moviesRepo::initRepo()
 {
-	this->addMovie(Movie{ "HP1","Fantasy",2003, 53000, "www.yt.com/hp1" });
-	this->addMovie(Movie{ "HP2","Fantasy",2004, 80000, "www.yt.com/hp2" });
-	this->addMovie(Movie{ "HP3","Fantasy",2006, 91000, "www.yt.com/hp3" });
-	this->addMovie(Movie{ "IndianaJones","Adventure",2002, 43251, "www.yt.com/IndiJ" });
-	this->addMovie(Movie{ "Pan'sLabyrinth","Fantasy",2006, 21987, "www.yt.com/pan" });
-	this->addMovie(Movie{ "LaLaLand","Drama",2017, 200000, "www.yt.com/lala23" });
+	this->addMovie(Movie{ "HP1","Fantasy",2003, 53000, "https://www.youtube.com/watch?v=rKjqZH4XQiY" });
+	this->addMovie(Movie{ "HP2","Fantasy",2004, 80000, "https://www.youtube.com/watch?v=bq7OxqAiieA" });
+	this->addMovie(Movie{ "HP3","Fantasy",2006, 91000, "https://www.youtube.com/watch?v=3IRpfht3X50" });
+	this->addMovie(Movie{ "IndianaJones","Adventure",2002, 43251, "https://www.youtube.com/watch?v=PoscTUBavms" });
+	this->addMovie(Movie{ "Pan'sLabyrinth","Fantasy",2006, 21987, "https://www.youtube.com/watch?v=h2VbU22H1g8" });
+	this->addMovie(Movie{ "LaLaLand","Drama",2017, 200000, "https://www.youtube.com/watch?v=_gx-GwyQVMs" });
 }
 
 void moviesRepo::deleteMovie(const std::string title)
 {
+	bool exist = false;
 	int i, j;
 	for ( i=0; i < moviesL.getSize(); i++)
 		if (title == moviesL[i].getTitle())
+		{
+			exist = true;
 			break;
-	for (j = i; j < moviesL.getSize()-1; j++)
+		}
+	if (exist)
 	{
-		moviesL[j] = moviesL[j + 1];
+		for (j = i; j < moviesL.getSize() - 1; j++)
+		{
+			moviesL[j] = moviesL[j + 1];
+		}
+		moviesL.deleteLast();
 	}
-	moviesL.deleteLast();
+	else
+		std::cout << "No such movie!";
 			
+}
+
+void moviesRepo::increaseLike(const std::string tit)
+{
+	int i;
+	for (i = 0; i<moviesL.getSize(); i++)
+		if (moviesL[i].getTitle() == tit)
+		{
+			moviesL[i].incLikes();
+			break;
+		}
 }
 
 void moviesRepo::updateMovieRepo(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer)

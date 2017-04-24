@@ -28,6 +28,8 @@ public:
 	*/
 	void deleteMovie(const std::string title);
 
+	void increaseLike(const std::string tit);
+
 	/*
 	Takes as parameter a title of a movie in the VectorList, finds that movie and then
 	updates the movie with the string given by the user.

@@ -16,7 +16,7 @@ public:
 	Movie(const std::string& title, const std::string& genre, int year, int likes, const std::string& trailer);
 	void printMovie();
 
-	std::string getTitle();
+	const std::string getTitle();
 
 	bool operator < (Movie m);
 
@@ -29,5 +29,7 @@ public:
 	int getYear();
 
 	int getLikes();
+
+	void incLikes() { this->likes++; }
 
 };
