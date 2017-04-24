@@ -18,7 +18,7 @@ void Movie::printMovie()
 		<< this->getTrailer() << ";\n";
 }
 
-std::string Movie::getTitle()
+const std::string Movie::getTitle()
 {
 	return this->title;
 }

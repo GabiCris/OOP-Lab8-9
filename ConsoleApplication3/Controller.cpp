@@ -9,9 +9,9 @@ DynamicVector<Movie> moviesCtrl::getMovies()
 
 void moviesCtrl::addMovieCtrl(const Movie& m)
 {
-	std::cout << getRepo().getList().getSize();
+	//std::cout << getRepo().getList().getSize();
 	repo.addMovie(m);
-	std::cout << getRepo().getList().getSize();
+	//std::cout << getRepo().getList().getSize();
 }
 
 void moviesCtrl::deleteMovieCtrl(const std::string& title)
