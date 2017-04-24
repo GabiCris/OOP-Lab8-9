@@ -10,7 +10,7 @@ public:
 
 	moviesRepo getRepo() const { return repo; }
 
-	DynamicVector<Movie> getMovies();
+	std::vector<Movie> getMovies();
 
 	void incLikes(const std::string title) { this->repo.increaseLike(title); }
 

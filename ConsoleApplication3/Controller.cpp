@@ -2,7 +2,7 @@
 
 
 
-DynamicVector<Movie> moviesCtrl::getMovies()
+std::vector<Movie> moviesCtrl::getMovies()
 {
 	return this->repo.getList();
 }

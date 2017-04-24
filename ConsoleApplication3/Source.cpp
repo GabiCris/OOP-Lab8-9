@@ -1,6 +1,6 @@
 #include "UI.h"
 #include <assert.h>
-
+/*
 void testRep()
 {
 	moviesRepo repo{};
@@ -15,11 +15,11 @@ void testRep()
 	repo.updateMovieRepo("HP1", "HP100", "Fantasy", "2300", "53000", "https://www.youtube.com/watch?v=rKjqZH4XQiY");
 	assert(repo.getList()[4].getTitle() == "HP100");
 }
-
+*/
 
 int main()
 {	
-	testRep();
+	//testRep();
 	moviesRepo repo{};
 	listRepo watchRepo{};
 	repo.initRepo();

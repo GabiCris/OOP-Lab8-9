@@ -114,7 +114,7 @@ void UI::updateUi()
 
 void UI::taskA()
 {
-	int i, n= ctrl.getMovies().getSize();
+	int i, n= ctrl.getMovies().size();
 	std::string genr, answer;
 	std::cout << "Enter genre to browse by: ";
 	std::getline(std::cin, genr);

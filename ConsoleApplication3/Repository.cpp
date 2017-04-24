@@ -1,15 +1,16 @@
 #include "Repository.h"
 #include <assert.h>
 #include <algorithm>
-
+/*
 DynamicVector<Movie> moviesRepo::getList()
 {
 	return this->moviesL;
 }
-
+*/
 void moviesRepo::addMovie(const Movie& m)
 {
-	this->moviesL.add(m);
+	this->moviesList.push_back(m);
+	//this->moviesL.add(m);
 	//std::sort(this->repo.MoviesL.begin(), this->ctrl.getRepo().getList().end());
 }
 
@@ -26,22 +27,15 @@ void moviesRepo::initRepo()
 void moviesRepo::deleteMovie(const std::string title)
 {
 	bool exist = false;
-	int i, j;
-	for ( i=0; i < moviesL.getSize(); i++)
-		if (title == moviesL[i].getTitle())
+	Movie m;
+	for (auto s: this->moviesList)
+		if (s.getTitle() == title)
 		{
+			moviesList.erase(std::remove(moviesList.begin(), moviesList.end(), s), moviesList.end());
 			exist = true;
 			break;
 		}
-	if (exist)
-	{
-		for (j = i; j < moviesL.getSize() - 1; j++)
-		{
-			moviesL[j] = moviesL[j + 1];
-		}
-		moviesL.deleteLast();
-	}
-	else
+	if (!exist)
 		std::cout << "No such movie!";
 			
 }
@@ -67,7 +61,7 @@ void moviesRepo::updateMovieRepo(const std::string title, const std::string newT
 		}
 	moviesL[i].updateMovie(newTitle, newGenre, newYear, newLikes, newTrailer);
 }
-
+/*
 void testRepo()
 {
 	moviesRepo repo{};
@@ -81,3 +75,4 @@ void testRepo()
 	//repo.updateMovieRepo("HP1", "t", "t", "1", "1", "t");
 	//assert(repo.moviesL[0].getTitle == "t");
 }
+*/

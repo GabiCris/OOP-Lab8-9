@@ -10,8 +10,8 @@ private:
 	DynamicVector<Movie> moviesL;
 public:
 		
-	DynamicVector<Movie> getList();
-
+	//DynamicVector<Movie> getList();
+	std::vector<Movie> getList() { return this->moviesList; }
 	/*
 	Takes as param a movie and adds it to the vector of Movies.
 	m - has to be of valid Movie type.
