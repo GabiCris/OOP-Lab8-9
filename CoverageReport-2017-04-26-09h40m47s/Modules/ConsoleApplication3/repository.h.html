@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>repository.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#pragma once
+#include &lt;vector&gt;
+#include "Domain.h"
+#include "Vector.h"
+
+class moviesRepo
+{
+private:
+	std::vector&lt;Movie&gt; moviesList;
+	DynamicVector&lt;Movie&gt; moviesL;
+public:
+		
+<span style = "background-color:#dfd">	std::vector&lt;Movie&gt; getList() { return this-&gt;moviesList; }</span>
+	/*
+	Takes as param a movie and adds it to the vector of Movies.
+	m - has to be of valid Movie type.
+	*/
+	void addMovie(const Movie&amp; m);
+	/*
+	Initialises Repo vector with entries of movies for testing!
+	*/
+	void initRepo();
+	/*
+	Takes as parameters a string. Finds the movie in the vector with the specific
+	title and then, deletes it by overwriting the over entries in the vector with the ones
+	on the next posiitons.
+	*/
+	bool deleteMovie(const std::string title);
+
+	void increaseLike(const std::string tit);
+
+	/*
+	Takes as parameter a title of a movie in the VectorList, finds that movie and then
+	updates the movie with the string given by the user.
+	The update of the movie is made by calling te updateMovie method of the Movie class.
+	*/
+	void updateMovieRepo(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer);
+};
+
+//void testRepo();</pre>
+	</body>
+</html>

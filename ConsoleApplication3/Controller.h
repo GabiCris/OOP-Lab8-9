@@ -16,7 +16,7 @@ public:
 
 	void addMovieCtrl(const Movie& m);
 
-	void deleteMovieCtrl(const std::string& title);
+	bool deleteMovieCtrl(const std::string& title);
 
 	void updateMovieCtrl(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer);
 	

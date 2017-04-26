@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>domain.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#pragma once
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+class Movie
+{
+public:
+	std::string title;
+	std::string genre;
+	int year;
+	int likes;
+	std::string trailer;
+
+	bool operator==(const Movie&amp; m);
+
+//public:
+	Movie();
+	Movie(const std::string&amp; title, const std::string&amp; genre, int year, int likes, const std::string&amp; trailer);
+	void printMovie();
+
+<span style = "background-color:#dfd">	std::string getTitle() const { return this-&gt;title; }</span>
+<span style = "background-color:#fdd">	std::string getGenre() const { return this-&gt;genre; }
+	std::string getTrailer()const { return this-&gt;trailer; }
+	int getYear()const { return this-&gt;year; }
+	int getLikes() const { return this-&gt;likes; }</span>
+
+	void updateMovie(const std::string&amp; newTitle, const std::string&amp; newGenre, const std::string&amp; newYear, const std::string&amp; newLikes, const std::string&amp; newTrailer);
+
+	bool operator &lt; (Movie m);
+
+<span style = "background-color:#fdd">	void incLikes() { this-&gt;likes++; }</span>
+
+};</pre>
+	</body>
+</html>

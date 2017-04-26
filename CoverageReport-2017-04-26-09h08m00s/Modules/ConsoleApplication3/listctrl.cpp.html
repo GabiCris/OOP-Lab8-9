@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>listctrl.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "ListCtrl.h"
+
+void listCtrl::add(const Movie &amp; m)
+<span style = "background-color:#fdd">{
+	watchRepo.addMovieList(m);
+}</span>
+
+void listCtrl::del(const std::string title)
+<span style = "background-color:#fdd">{
+	this-&gt;watchRepo.deleteMovieList(title);
+}</span>
+
+DynamicVector&lt;Movie&gt; listCtrl::getList()
+<span style = "background-color:#fdd">{
+	return this-&gt;watchRepo.getList();
+}</span></pre>
+	</body>
+</html>

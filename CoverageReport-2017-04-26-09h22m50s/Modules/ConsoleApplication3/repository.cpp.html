@@ -1,0 +1,88 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>repository.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "Repository.h"
+#include &lt;assert.h&gt;
+#include &lt;algorithm&gt;
+/*
+DynamicVector&lt;Movie&gt; moviesRepo::getList()
+{
+	return this-&gt;moviesL;
+}
+*/
+void moviesRepo::addMovie(const Movie&amp; m)
+<span style = "background-color:#dfd">{
+	this-&gt;moviesList.push_back(m);
+}</span>
+
+void moviesRepo::initRepo()
+<span style = "background-color:#dfd">{
+	this-&gt;addMovie(Movie{ "HP1","Fantasy",2003, 53000, "https://www.youtube.com/watch?v=rKjqZH4XQiY" });
+	this-&gt;addMovie(Movie{ "HP2","Fantasy",2004, 80000, "https://www.youtube.com/watch?v=bq7OxqAiieA" });
+	this-&gt;addMovie(Movie{ "HP3","Fantasy",2006, 91000, "https://www.youtube.com/watch?v=3IRpfht3X50" });
+	this-&gt;addMovie(Movie{ "IndianaJones","Adventure",2002, 43251, "https://www.youtube.com/watch?v=PoscTUBavms" });
+	this-&gt;addMovie(Movie{ "Pan'sLabyrinth","Fantasy",2006, 21987, "https://www.youtube.com/watch?v=h2VbU22H1g8" });
+	this-&gt;addMovie(Movie{ "LaLaLand","Drama",2017, 200000, "https://www.youtube.com/watch?v=_gx-GwyQVMs" });
+}</span>
+
+bool moviesRepo::deleteMovie(const std::string title)
+<span style = "background-color:#dfd">{
+	bool exist = false;
+	Movie m;
+	for (auto s: this-&gt;moviesList)
+		if (s.getTitle() == title)</span>
+		{
+<span style = "background-color:#dfd">			moviesList.erase(std::remove(moviesList.begin(), moviesList.end(), s), moviesList.end());
+			return true;</span>
+		}
+<span style = "background-color:#dfd">	if (!exist)
+		return false;</span>
+			
+<span style = "background-color:#fdd">}</span>
+
+void moviesRepo::increaseLike(const std::string tit)
+<span style = "background-color:#dfd">{</span>
+	int i;
+<span style = "background-color:#dfd">	for (i = 0; i&lt;moviesList.size(); i++)
+		if (moviesL[i].getTitle() == tit)</span>
+		{
+<span style = "background-color:#fdd">			moviesL[i].incLikes();
+			break;</span>
+<span style = "background-color:#dfd">		}
+}</span>
+
+void moviesRepo::updateMovieRepo(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer)
+<span style = "background-color:#dfd">{</span>
+	int i;
+<span style = "background-color:#dfd">	for (i=0; i&lt;moviesList.size(); i++)
+		if (moviesL[i].getTitle() == title)</span>
+		{
+<span style = "background-color:#fdd">			break;</span>
+<span style = "background-color:#dfd">		}
+	moviesL[i].updateMovie(newTitle, newGenre, newYear, newLikes, newTrailer);
+}</span>
+/*
+void testRepo()
+{
+	moviesRepo repo{};
+	repo.initRepo();
+	assert(repo.getList().getSize() == 6);
+	repo.deleteMovie("HP3");
+	assert(repo.getList().getSize() == 5);
+	repo.deleteMovie("HP2");
+	assert(repo.getList().getSize() == 5);
+
+	//repo.updateMovieRepo("HP1", "t", "t", "1", "1", "t");
+	//assert(repo.moviesL[0].getTitle == "t");
+}
+*/</pre>
+	</body>
+</html>

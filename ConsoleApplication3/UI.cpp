@@ -74,6 +74,7 @@ void UI::addUi()
 	std::cout << "Movie Trailer: ";
 	std::cin >> trailer;
 	this->ctrl.addMovieCtrl(Movie{ title, genre, year, likes, trailer });
+	
 }
 
 void UI::listUi()
@@ -88,7 +89,9 @@ void UI::deleteUi()
 	std::string title;
 	std::cout << "Title of Movie: ";
 	std::cin >> title;
-	ctrl.deleteMovieCtrl(title);
+	bool valid = ctrl.deleteMovieCtrl(title);
+	if (!valid)
+		std::cout << "Invalid delete!";
 
 
 }

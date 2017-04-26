@@ -1,0 +1,224 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "UI.h"
+#include &lt;algorithm&gt;
+#include &lt;windows.h&gt;
+#include &lt;ShellApi.h&gt;
+
+void UI::appStart()
+<span style = "background-color:#fdd">{
+	std::cout &lt;&lt; "Welcome to your favourite IMDB app!\n";
+	bool alive = true;</span>
+	int choice;
+<span style = "background-color:#fdd">	std::cout &lt;&lt; "Enter 1 for Administrator Mode;\nEnter 2 for User Mode;\nMode:";
+	std::cin &gt;&gt; choice;
+	std::string cmd;</span>
+
+<span style = "background-color:#fdd">	if (choice == 1)
+		while (alive)</span>
+		{
+<span style = "background-color:#fdd">			cmd = this-&gt;getCommand();
+			if (cmd == "exit")
+				alive = false;
+			if (cmd == "add")</span>
+			{
+<span style = "background-color:#fdd">				this-&gt;addUi();</span>
+			}
+<span style = "background-color:#fdd">			if (cmd == "delete")</span>
+			{
+<span style = "background-color:#fdd">				this-&gt;deleteUi();</span>
+			}
+<span style = "background-color:#fdd">			if (cmd == "update")</span>
+			{
+<span style = "background-color:#fdd">				this-&gt;updateUi();</span>
+			}
+<span style = "background-color:#fdd">			if (cmd == "list")</span>
+			{
+<span style = "background-color:#fdd">				this-&gt;listUi();</span>
+			}
+<span style = "background-color:#fdd">		}
+	else if (choice == 2)
+		while (alive)</span>
+		{
+<span style = "background-color:#fdd">			cmd = this-&gt;getCommand();
+			if (cmd == "exit")
+				alive = false;</span>
+			//task a
+<span style = "background-color:#fdd">			if (cmd == "browse")
+				taskA();</span>
+
+<span style = "background-color:#fdd">			if (cmd == "list")
+				listWatchList();</span>
+
+<span style = "background-color:#fdd">			if (cmd == "delete")
+				deleteWatchList();</span>
+
+<span style = "background-color:#fdd">		}
+	else</span>
+	{
+<span style = "background-color:#fdd">		std::cout &lt;&lt; "Invalid option";
+		exit(0);</span>
+	}
+<span style = "background-color:#fdd">}</span>
+
+void UI::addUi()
+<span style = "background-color:#fdd">{
+	std::string genre, title, trailer;</span>
+	int year, likes;
+<span style = "background-color:#fdd">	std::cout &lt;&lt; "Movie title: ";
+	std::cin &gt;&gt; title;
+	std::cout &lt;&lt; "Movie Genre: ";
+	std::cin &gt;&gt; genre;
+	std::cout &lt;&lt; "Year of Release: ";
+	std::cin &gt;&gt; year;
+	std::cout &lt;&lt; "No. of likes:";
+	std::cin &gt;&gt; likes;
+	std::cout &lt;&lt; "Movie Trailer: ";
+	std::cin &gt;&gt; trailer;
+	this-&gt;ctrl.addMovieCtrl(Movie{ title, genre, year, likes, trailer });</span>
+	
+<span style = "background-color:#fdd">}</span>
+
+void UI::listUi()
+<span style = "background-color:#fdd">{	//TODO SORT</span>
+	//std::sort(this-&gt;ctrl.getRepo().getList().begin(), this-&gt;ctrl.getRepo().getList().end());
+<span style = "background-color:#fdd">	for (auto s : ctrl.getMovies())
+		s.printMovie();
+}</span>
+
+void UI::deleteUi()
+<span style = "background-color:#fdd">{
+	std::string title;
+	std::cout &lt;&lt; "Title of Movie: ";
+	std::cin &gt;&gt; title;
+	bool valid = ctrl.deleteMovieCtrl(title);
+	if (!valid)
+		std::cout &lt;&lt; "Invalid delete!";</span>
+
+
+<span style = "background-color:#fdd">}</span>
+
+void UI::updateUi()
+<span style = "background-color:#fdd">{
+	std::string title, newT, newG, yr, lik, tr;
+	std::cout &lt;&lt; "Movie title to be updated: ";
+	std::cin &gt;&gt; title;
+	std::cout &lt;&lt; "New Movie title: ";
+	std::cin &gt;&gt; newT;
+	std::cout &lt;&lt; "New Movie Genre: ";
+	std::cin &gt;&gt; newG;
+	std::cout &lt;&lt; "New Year of Release: ";
+	std::cin &gt;&gt; yr;
+	std::cout &lt;&lt; "New No. of likes:";
+	std::cin &gt;&gt; lik;
+	std::cout &lt;&lt; "New Movie Trailer: ";
+	std::cin &gt;&gt; tr;
+	ctrl.updateMovieCtrl(title, newT, newG, yr, lik, tr);</span>
+
+<span style = "background-color:#fdd">}</span>
+
+void UI::taskA()
+<span style = "background-color:#fdd">{
+	int i, n= ctrl.getMovies().size();
+	std::string genr, answer;
+	std::cout &lt;&lt; "Enter genre to browse by: ";
+	std::getline(std::cin, genr);
+	std::getline(std::cin, genr);</span>
+	
+<span style = "background-color:#fdd">	if (genr != "")</span>
+	{
+<span style = "background-color:#fdd">		for (i = 0; i &lt; n; i++)</span>
+		{
+<span style = "background-color:#fdd">			if (ctrl.getMovies()[i].getGenre() == genr)</span>
+			{
+<span style = "background-color:#fdd">				ctrl.getMovies()[i].printMovie();
+				s2ws(ctrl.getMovies()[i].getTrailer());
+				ShellExecute(0, 0, s2ws(ctrl.getMovies()[i].getTrailer()).c_str(), 0, 0, SW_SHOW);
+				std::cout &lt;&lt; "Add movie to watch List? (y/n or stop): ";
+				std::cin &gt;&gt; answer;
+				if (answer == "y")
+					this-&gt;watchCtrl.add(ctrl.getMovies()[i]);
+				else if (answer == "stop")
+					break;</span>
+			}
+<span style = "background-color:#fdd">			else</span>
+			{
+<span style = "background-color:#fdd">				i++;</span>
+			}
+<span style = "background-color:#fdd">			if (i == n)
+				i = -1;
+		}</span>
+	}
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#fdd">		for (i = 0; i &lt; n; i++)</span>
+		{
+<span style = "background-color:#fdd">			ctrl.getMovies()[i].printMovie();
+			s2ws(ctrl.getMovies()[i].getTrailer());
+			ShellExecute(0, 0, s2ws(ctrl.getMovies()[i].getTrailer()).c_str(), 0, 0, SW_SHOW);
+			std::cout &lt;&lt; "Add movie to watch List? (y/n or stop): ";
+			std::cin &gt;&gt; answer;
+			if (answer == "y")
+				this-&gt;watchCtrl.add(ctrl.getMovies()[i]);
+			else if (answer == "stop")
+				break;
+			if (i == n-1)
+				i = -1;
+		}</span>
+
+	}
+
+<span style = "background-color:#fdd">}</span>
+
+void UI::listWatchList()
+<span style = "background-color:#fdd">{
+	for (auto s : watchCtrl.getList())
+		s.printMovie();
+}</span>
+
+void UI::deleteWatchList()
+<span style = "background-color:#fdd">{
+	std::string tit, like;
+	std::cout &lt;&lt; "Name of the movie watched: ";
+	std::cin &gt;&gt; tit;
+	this-&gt;watchCtrl.del(tit);
+	std::cout &lt;&lt; "Like the Movie? (y/n): ";
+	std::cin &gt;&gt; like;
+	if (like == "y")
+		this-&gt;ctrl.incLikes(tit);
+	else if (like != "n")
+		std::cout &lt;&lt; "invalid option! \n";</span>
+
+<span style = "background-color:#fdd">}</span>
+
+std::wstring UI::s2ws(const std::string &amp; s)
+<span style = "background-color:#fdd">{</span>
+	int len;
+<span style = "background-color:#fdd">	int slength = (int)s.length() + 1;
+	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
+	wchar_t* buf = new wchar_t[len];
+	MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+	std::wstring r(buf);
+	delete[] buf;
+	return r;
+}</span>
+
+
+std::string UI::getCommand()
+<span style = "background-color:#fdd">{
+	std::cout &lt;&lt; "Your wish is my command: ";
+	std::string cmd;
+	std::cin &gt;&gt; cmd;
+	return cmd;
+}</span></pre>
+	</body>
+</html>

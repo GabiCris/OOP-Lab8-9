@@ -1,0 +1,82 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>source.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "UI.h"
+#include &lt;assert.h&gt;
+
+void test_repo()
+<span style = "background-color:#dfd">{
+	moviesRepo repo{};
+	repo.initRepo();
+	assert(repo.getList().size() == 6);
+	repo.deleteMovie("HP1");
+	assert(repo.getList().size() == 5);
+	repo.deleteMovie("HP2");
+	assert(repo.getList().size() == 4);
+	repo.addMovie(Movie{ "HP1","Fantasy",2003, 53000, "https://www.youtube.com/watch?v=rKjqZH4XQiY" });
+	assert(repo.getList().size() == 5);
+	repo.updateMovieRepo("HP1", "HP100", "Fantasy", "2300", "53000", "https://www.youtube.com/watch?v=rKjqZH4XQiY");
+	assert(repo.deleteMovie("asas") == false);</span>
+
+<span style = "background-color:#dfd">	repo.increaseLike("HP1");</span>
+
+<span style = "background-color:#dfd">	assert(repo.getList()[0] &lt; repo.getList()[1] == true);
+	assert(repo.getList()[0].getGenre() == "Fantasy");
+	assert(repo.getList()[0].getLikes() == 91000);
+	assert(repo.getList()[0].getYear() == 2006);
+	assert(repo.getList()[0].getTrailer() == "https://www.youtube.com/watch?v=3IRpfht3X50");</span>
+
+	//assert(repo.getList()[4].getTitle() == "HP100");
+<span style = "background-color:#dfd">}</span>
+
+void test_ctrl()
+<span style = "background-color:#dfd">{
+	moviesRepo repo{};
+	repo.initRepo();
+	moviesCtrl ctrl{ repo };
+	ctrl.deleteMovieCtrl("HP1");
+	std::vector&lt;Movie&gt; test = ctrl.getMovies();
+	moviesRepo testRepo = ctrl.getRepo();
+	ctrl.incLikes("HP2");
+	ctrl.addMovieCtrl(Movie{ "HP1","Fantasy",2003, 53000, "https://www.youtube.com/watch?v=rKjqZH4XQiY" });
+	ctrl.updateMovieCtrl("HP1", "HP100", "Fantasy", "2300", "53000", "https://www.youtube.com/watch?v=rKjqZH4XQiY");
+}</span>
+void test_all()
+<span style = "background-color:#dfd">{
+	test_repo();
+	test_ctrl();
+}</span>
+
+int main()
+<span style = "background-color:#dfd">{	
+	test_all();</span>
+	/*
+	moviesRepo repo{};
+	listRepo watchRepo{};
+	repo.initRepo();
+	//std::cout &lt;&lt; repo.getList()[1].getTitle();
+	
+	//repo.moviesList.push_back(Movie{ "as", "asa", 2, 3, "asas" });
+	//std::cout &lt;&lt; repo.getList()-&gt;size();
+	//std::cout &lt;&lt; repo.getList()[0].getTitle();
+	
+	moviesCtrl ctrl{ repo };
+	listCtrl watchCtrl{ watchRepo };
+	//std::cout &lt;&lt; ctrl.getRepo()-&gt;moviesList.size();
+	UI u{ ctrl, watchCtrl };
+	//std::cout &lt;&lt; u.getCtrl()-&gt;getRepo()-&gt;moviesList.size();
+	u.appStart();
+	*/
+
+<span style = "background-color:#dfd">	return 0;
+}</span></pre>
+	</body>
+</html>

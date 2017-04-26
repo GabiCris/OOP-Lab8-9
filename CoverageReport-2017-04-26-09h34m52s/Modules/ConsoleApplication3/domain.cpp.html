@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>domain.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "Domain.h"
+
+bool Movie::operator==(const Movie&amp; m)
+<span style = "background-color:#dfd">{
+	if (this-&gt;getTitle() == m.getTitle())
+		return true;
+	return false;
+}</span>
+
+<span style = "background-color:#dfd">Movie::Movie(): title(""), genre(""),year(0), likes(0), trailer("") {}</span>
+
+Movie::Movie(const std::string&amp; title, const std::string&amp; genre, int year, int likes, const std::string&amp; trailer)
+<span style = "background-color:#dfd">{
+	this-&gt;title = title;
+	this-&gt;genre = genre;
+	this-&gt;year = year;
+	this-&gt;likes = likes;
+	this-&gt;trailer = trailer;
+}</span>
+
+void Movie::printMovie()
+<span style = "background-color:#fdd">{
+	std::cout &lt;&lt; "Title: " &lt;&lt; this-&gt;getTitle() &lt;&lt; "; Genre: " &lt;&lt; this-&gt;getGenre() &lt;&lt; "; Year: "</span>
+		&lt;&lt; this-&gt;getYear() &lt;&lt; "; Likes: " &lt;&lt; this-&gt;getLikes() &lt;&lt; "; Trailer: "
+		&lt;&lt; this-&gt;getTrailer() &lt;&lt; ";\n";
+<span style = "background-color:#fdd">}</span>
+
+bool Movie::operator&lt;(Movie m)
+<span style = "background-color:#dfd">{</span>
+
+<span style = "background-color:#dfd">	return this-&gt;getTitle().compare(m.getTitle());
+}</span>
+
+
+void Movie::updateMovie(const std::string&amp; newTitle, const std::string&amp; newGenre, const std::string&amp; newYear, const std::string&amp; newLikes, const std::string&amp; newTrailer)
+<span style = "background-color:#dfd">{
+	if (newTitle != "") this-&gt;title = newTitle;
+	if (newGenre != "") this-&gt;genre = newGenre;
+	if (newYear != "") this-&gt;year = atoi(newYear.c_str());
+	if (newLikes != "") this-&gt;likes = atoi(newLikes.c_str());
+	if (newTrailer != "") this-&gt;trailer = newTrailer;
+}</span></pre>
+	</body>
+</html>

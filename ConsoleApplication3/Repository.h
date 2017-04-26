@@ -10,7 +10,6 @@ private:
 	DynamicVector<Movie> moviesL;
 public:
 		
-	//DynamicVector<Movie> getList();
 	std::vector<Movie> getList() { return this->moviesList; }
 	/*
 	Takes as param a movie and adds it to the vector of Movies.
@@ -26,7 +25,7 @@ public:
 	title and then, deletes it by overwriting the over entries in the vector with the ones
 	on the next posiitons.
 	*/
-	void deleteMovie(const std::string title);
+	bool deleteMovie(const std::string title);
 
 	void increaseLike(const std::string tit);
 

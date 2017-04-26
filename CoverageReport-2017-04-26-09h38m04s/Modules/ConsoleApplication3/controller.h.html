@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>controller.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#pragma once
+#include "Repository.h"
+
+class moviesCtrl
+{
+private:
+	moviesRepo repo;
+public:
+<span style = "background-color:#dfd">	moviesCtrl(const moviesRepo&amp; r) : repo(r) {}</span>
+
+	moviesRepo getRepo() const { return repo; }
+
+	std::vector&lt;Movie&gt; getMovies();
+
+<span style = "background-color:#fdd">	void incLikes(const std::string title) { this-&gt;repo.increaseLike(title); }</span>
+
+	void addMovieCtrl(const Movie&amp; m);
+
+	bool deleteMovieCtrl(const std::string&amp; title);
+
+	void updateMovieCtrl(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer);
+	
+};</pre>
+	</body>
+</html>

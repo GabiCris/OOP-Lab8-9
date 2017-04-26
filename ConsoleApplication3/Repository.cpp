@@ -1,17 +1,11 @@
 #include "Repository.h"
 #include <assert.h>
 #include <algorithm>
-/*
-DynamicVector<Movie> moviesRepo::getList()
-{
-	return this->moviesL;
-}
-*/
+
+
 void moviesRepo::addMovie(const Movie& m)
 {
 	this->moviesList.push_back(m);
-	//this->moviesL.add(m);
-	//std::sort(this->repo.MoviesL.begin(), this->ctrl.getRepo().getList().end());
 }
 
 void moviesRepo::initRepo()
@@ -24,7 +18,7 @@ void moviesRepo::initRepo()
 	this->addMovie(Movie{ "LaLaLand","Drama",2017, 200000, "https://www.youtube.com/watch?v=_gx-GwyQVMs" });
 }
 
-void moviesRepo::deleteMovie(const std::string title)
+bool moviesRepo::deleteMovie(const std::string title)
 {
 	bool exist = false;
 	Movie m;
@@ -32,34 +26,26 @@ void moviesRepo::deleteMovie(const std::string title)
 		if (s.getTitle() == title)
 		{
 			moviesList.erase(std::remove(moviesList.begin(), moviesList.end(), s), moviesList.end());
-			exist = true;
-			break;
+			return true;
 		}
 	if (!exist)
-		std::cout << "No such movie!";
+		return false;
 			
 }
 
 void moviesRepo::increaseLike(const std::string tit)
 {
-	int i;
-	for (i = 0; i<moviesL.getSize(); i++)
-		if (moviesL[i].getTitle() == tit)
-		{
-			moviesL[i].incLikes();
-			break;
-		}
+
+	for (auto s : moviesList)
+		if (s.getTitle() == tit)
+			s.incLikes();
 }
 
 void moviesRepo::updateMovieRepo(const std::string title, const std::string newTitle, const std::string newGenre, const std::string newYear, const std::string newLikes, const std::string newTrailer)
 {
-	int i;
-	for (i=0; i<moviesL.getSize(); i++)
-		if (moviesL[i].getTitle() == title)
-		{
-			break;
-		}
-	moviesL[i].updateMovie(newTitle, newGenre, newYear, newLikes, newTrailer);
+	for (auto s: moviesList)
+		if (s.getTitle() == title)
+			s.updateMovie(newTitle, newGenre, newYear, newLikes, newTrailer);
 }
 /*
 void testRepo()
